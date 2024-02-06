@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 폼 유효성 검사</title>
+    <script>
+        function validateForm(e){
+            event.preventDefault(); // 기본기능 일시정지
+            // console.dir(this); // this==윈도우
+            // console.dir(e.title.value);
+            // console.log(document.form1); // form의 name으로 접근
+            var resultArea = document.getElementById("result");
+            if(e.title.value == ""){
+                // alert("제목을 입력하세요.");
+                resultArea.innerText = "결과: 제목을 입력하세요.";
+                e.title.focus();
+                return;
+            }
+            if(e.writer.value == ""){
+                // alert("이름을 입력하세요.");
+                resultArea.innerText = "결과: 이름을 입력하세요.";
+                e.writer.focus();
+                return;
+            }
+            if(Number(e.writer.value.length) < 2){
+                // alert("이름은 2글자 이상이어야 합니다.");
+                resultArea.innerText = "결과: 이름은 2글자 이상이어야 합니다.";
+                e.writer.value = "";
+                e.writer.focus();
+                return;
+            }
+            if(e.content.value == ""){
+                // alert("내용을 입력하세요.");
+                resultArea.innerText = "결과: 내용을 입력하세요.";
+                e.content.focus();
+                return;
+            }
+            // e.submit();
+            // document.getElementById("result").innerHTML = `
+            // <p>제목: ${e.title.value}</p>
+            // <p>성명: ${e.writer.value}</p>
+            // <p>내용: ${e.content.value}</p>
+            // `
+
+            var jsonStr = `{
+                "title":"${e.title.value}",
+                "writer":"${e.writer.value}",
+                "content":"${e.content.value}"
+            }`;
+
+            var obj = JSON.parse(jsonStr);
+
+            var resultStr = "<p>제목: " + e.title.value + "</p>";
+            resultStr += "<p>작성자: " + e.writer.value + "</p>";
+
+            document.getElementById("result").innerHTML = jsonStr;
+
+        }
+    </script>
+</head>
+<body>
+    <h1>JS 폼 유효성 검사</h1>
+    <form action="" onsubmit="validateForm(this)" name="form1"> <!-- this==form form이 스크립트 function으로 넘어감 -->
+    <label for="title">제목: </label>
+    <input type="text" name="title"><br>
+    <label for="writer">이름: </label>
+    <input type="text" name="writer"><br>
+    <label for="content">내용: </label>
+    <textarea name="content" id="" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="저장">
+    </form>
+    <div id="result">결과: </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>덧셈 계산기</h2>
+    <form action="aaa.jsp" id="calc">
+        <input type="text" size="1" name="num1" value="">
+        <span>+</span>
+        <input type="text" size="1" name="num2" value="">
+        <input type="submit" value="=">
+        <input type="text" size="1" name="result"><br><br>
+
+        <input type="text" size="1" name="num3" value="">
+        <span>-</span>
+        <input type="text" size="1" name="num4" value="">
+        <input type="submit" value="=">
+        <input type="text" size="1" name="result2"><br><br>
+
+        <input type="reset" value="초기화">
+    </form>
+
+    <script>
+        var calcForm = document.getElementById("calc");
+        calcForm.onsubmit = function(){
+            event.preventDefault(); // form의 기본 기능 일시 정지
+            var num1 = Number(calcForm.num1.value); // Number() == parseInt()
+            var num2 = Number(calcForm.num2.value);
+
+            var num3 = Number(calcForm.num3.value);
+            var num4 = Number(calcForm.num4.value);
+
+            var result = num1 + num2;
+            var result2 = num3 - num4;
+
+            calcForm.result.value = result;
+            calcForm.result2.value = result2;
+        }
+    </script>
+</body>
+</html>

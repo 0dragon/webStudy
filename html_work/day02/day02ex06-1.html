@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록 페이지 구현</title>
+</head>
+<body>
+    <h1>목록 페이지 구현</h1>
+    <form action="aaaa.jsp" method="GET">
+            <label for="name">이름: </label> 
+            <input type="text" name="name" id="name" value=""><br>
+            <label for="department">부서: </label> 
+            <input type="text" name="department" id="department"><br>
+            <label for="position">직책: </label> 
+            <input type="text" name="position" id="position" value="">
+            <br>
+            <label for="photo">사진: </label> 
+            <input type="file" name="photo" id="photo" value="">
+            <br><br>
+            <input type="submit" name="add" id="add" value="새 사원 추가" style="background-color: crimson;">
+    </form>
+    <fieldset>
+        <button>선택 삭제</button>| 검색:
+        <select name="select" id="">
+            <option value="1">이름</option>
+            <option value="2">부서</option>
+            <option value="3">직책</option>
+        </select>
+        <input type="text" name="search" id="search" value="">
+        <table border="1" cellspacing="0">
+           <tr bgcolor="yellow">
+            <td><input type="checkbox"></td>
+            <td>번호</td>
+            <td>사진</td>
+            <td>사원명</td>
+            <td>부서</td>
+            <td>직급</td>
+            <td>수정</td>
+            <td>삭제</td>
+           </tr>
+           <tr>
+            <td><input type="checkbox"></td>
+            <td><label for="number"></label></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><input type="button" name="edit" id="edit" value="edit"></td>
+            <td><input type="button" name="delete" id="delete" value="delete"></td>
+           </tr>
+           <tr>
+            <td></td>
+            <td></td>
+            <td colspan="4"></td>
+            <td></td>
+            <td></td>
+           </tr> 
+        </table>
+    </fieldset>
+</body>
+</html>

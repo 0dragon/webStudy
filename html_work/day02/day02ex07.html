@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[name=input3]{
+            padding: 10px;
+            margin: 5px 0px;
+            width: 200px;
+            transition: width 0.5s ease-in-out;
+        }
+        input[name=input3]:focus{
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Form 스타일 설정</h1>
+    <form>
+        <fieldset>
+            <legend>데이터 입력</legend>
+            <label for="input3">input 3</label>
+            <input type="text" id="input3" name="input3">
+        </fieldset>
+    </form>
+</body>
+</html>

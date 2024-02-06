@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다단 레이아웃</title>
+    <style>
+        *{
+            border : 1px dotted gray;
+            padding: 3px;
+            margin: 2px;
+            border-radius: 5px;
+        }
+        div, header, footer, main, aside{
+            border : 1px solid red;
+        }
+        ul, section{
+            border: 1px solid blue;
+        }
+        main>div, aside{
+            float: left;
+        }
+        aside{
+            width: 175px;
+            height: 300px;
+        }
+        main>div{
+            width: 400px;
+        }
+        footer{
+            clear: both;
+        }
+        div#page{
+            width: 800px;
+        }
+        main{
+            overflow: hidden;
+        }
+        main>div>section{
+            height: 80px;
+            background-color: aqua;
+        }
+        main>div>section:nth-child(2),main>div>section:nth-child(3){
+            background-color: aquamarine;
+            float: left;
+            width: 183px;
+            height: 200px;
+        }
+        div#page{
+            margin: 8px auto;
+        }
+        header>h1, footer>address{
+            border: 1px solid red;
+        }
+        header>ul>li{
+            border: 1px solid blue;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="page">
+        <header>
+            <h1>SYR Homepage</h1>
+            <ul>
+                <li>HOME</li>
+                <li>PROFILE</li>
+                <li>GALLERY</li>
+                <li>LECTURE</li>
+                <li>BOARD</li>
+            </ul>
+        </header>
+        <main>
+            <aside>left</aside>
+            <div>
+                <section>banner</section>
+                <section>1</section>
+                <section>2</section>
+            </div>
+            <aside>right</aside>
+        </main>
+        <footer>
+            <address>
+                word0506@naver.com
+            </address>
+        </footer>
+    </div>
+</body>
+</html>
