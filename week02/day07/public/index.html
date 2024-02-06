@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        div.row {
+            border-top: 1px solid gray;
+            padding: 10px;
+            background-color: #eee;
+        }
+        div.row input[name=title] {
+            border: 0;
+            background-color: #eee;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SYR homepage</h1>
+    <div>
+        할일: <input id="titleInput" type="text">
+        <span>
+            <button id="saveBtn">Save</button>
+        </span>
+    </div>
+    <h3>Todo List</h3>
+    <div class="list-area">
+    </div>
+
+    <script>
+        let todoList = [];
+        let noCnt = 3;
+
+        function drawList() {
+            const listArea = document.querySelector(".list-area");
+            let rowStr = "";
+            for(let i=0; i<todoList.length; i++) {
+                let todo = todoList[i];
+                rowStr += `
+                    <!-- todo 행 시작 -->
+                    <div class="row">
+                        <input ${todo.done?"checked":""} data-no="${todo.no}" onchange="chkEventHandler()" type="checkbox">
+                        <input name="title" type="text" class="${todo.done?"strike":""}" value="${todo.title}">
+                        <span>
+                            <button data-no="${todo.no}" type="submit" id="editBtn" onlcick="editEventHandler(this)">Edit</button>
+                            <button data-done="${todo.done}" data-no="${todo.no}" id="delBtn" onclick="delEventHandler(this)">Delete</button>
+                        </span>
+                    </div>
+                    <!-- todo 행 끝 -->
+                    `;
+            }
+            listArea.innerHTML = rowStr;
+        }
+
+        function saveData(){
+            let todoData = {
+                name: 'todo-data',
+                noCnt: noCnt,
+                todoList: todoList
+            }
+            localStorage.setItem("todo-data", JSON.stringify(todoData));
+        }
+
+        function loadData(){
+            if(localStorage.getItem("todo-data") != null) {
+            let jsonData = localStorage.getItem("todo-data");
+            let todoData = JSON.parse(jsonData);
+            todoList = todoData.todoList;
+            noCnt = todoData.noCnt;
+            }
+        }
+        loadData();
+
+        drawList();
+
+        let saveBtn = document.getElementById('saveBtn');
+        let titleInput = document.getElementById('titleInput');
+        
+        function inputDataHandler(){
+            if(titleInput.value == ""){
+                alert("내용을 입력하세요");
+                return;
+            }
+            let title = titleInput.value;
+            let todo = {no:noCnt++, title:title, done: false};
+            todoList.push(todo);
+            drawList();
+            titleInput.value = "";
+            titleInput.focus();
+        }
+        
+        function delEventHandler(btn){
+            let index = no2index(todoList, event.target.dataset.no);
+            
+            todoList.splice(index, 1);
+            drawList(todoList);
+        }
+        
+        function chkEventHandler() {
+            let index = no2index(todoList, event.target.dataset.no);
+            
+            todoList[index].done = !todoList[index].done;
+            drawList(todoList);
+        }
+        
+        function editEventHandler(btn) {
+        let newTitle = btn.parentElement.previousElementSibling.value;
+        let index = no2index(todoList, event.target.dataset.no);
+        todoList[index].title = newTitle;
+        drawList(todoList);
+    }
+    
+        saveBtn.addEventListener("click", function(e){
+            inputDataHandler();
+        });
+        
+        function no2index(arr, noStr){
+            let no = Number(noStr);
+            
+            let index = arr.findIndex(function(todo){
+                return todo.no === no;
+            });
+            return index;
+        }
+
+    </script>
+</body>
+</html>

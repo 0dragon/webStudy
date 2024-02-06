@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+    <h2>Todo List</h2>
+    <input type="text" id="titleInput" value="Hello">
+    <button id="saveBtn">SAVE</button>
+
+    <script>
+        // 실습: saveBtn을 클릭하면 titleInput의 내용을 콘솔에 출력
+        var btn = $('#saveBtn');
+        var input = $('#titleInput');
+        btn.click(function(){
+            console.log(input[0].value);
+        });
+
+        // $()함수의 인자로 DOM을 넣으면 jQuery 객체
+        // jQuery 객체에서 [0] 내용을 뽑아오면 DOM 객체
+        var saveBtn = document.getElementById('saveBtn');
+        console.log(saveBtn);
+
+        console.log($(saveBtn));
+        var btn = $(saveBtn)[0];
+        console.log(btn);
+        console.log(btn === saveBtn);
+    </script>
+</body>
+</html>

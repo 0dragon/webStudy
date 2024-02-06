@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ES6 이후 class, extends 키워드 추가
+        class People{
+            // 생성자 함수
+            // 객체를 생성할 때 자동 호출되는 함수
+            // 생성 가능한 객체는 무한대...
+            // this는 객체 자신
+            constructor(name, phone){
+                this.name = name;
+                this.phone = phone;
+            }
+        // 멤버함수
+        // People 클래스로 생성된 모든 객체가 사용 가능
+        showInfo(){
+            console.log(this.name, this.phone);
+        }
+    }
+        
+    const p01 = new People("장사장", "010-1234-1234");
+    console.log(p01.showInfo());
+    </script>
+</body>
+</html>

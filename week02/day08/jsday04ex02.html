@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--
+    <script src="http://code.jquery.com/jquery.js"></script>
+    -->
+    <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        /*
+        var $btn = $('#btn');
+        $btn.click(function(){
+            console.log("클릭");
+        });
+        */
+       
+        /*
+            이 부분에 있으면 버튼을 클릭해도 로그가 찍히지 않는다.
+            JS가 인터프리터 언어기 때문.
+            사용하려면 window.onload = function(){} 으로 사용해야 함.
+        */
+        
+           // jQuery 진입점 원형
+           // 문서의 DOM tree만 완성되면 바로 실행된다.
+           // $(document).ready(function(e){});
+
+           // jQuery 진입점 약식
+            $(function(){
+                var $btn = $('#btn');
+                $btn.click(function(){
+                    console.log("클릭");
+                });
+            });
+
+        </script>
+
+</head>
+<body>
+    <button id="btn">클릭</button>
+<!--    
+    <script>
+        var $btn = $('#btn');
+        $btn.click(function(){
+            console.log("클릭");
+        });
+    </script>
+-->
+    
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>햄버거 하우스형 게임</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <style>
+        .house{
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+        }
+        .box{
+            position: relative;
+            left: 0px;
+            top: 0px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .box > li{
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            background: linear-gradient(
+            45deg,
+            rgba(28, 147, 30, 1) 0%,
+            rgba(0, 0, 255, 1) 100%
+            );
+            background-blend-mode: normal;
+        }
+        .row .house{
+            float: left;
+        }
+        .row{
+            clear: both;
+        }
+        .stop{
+            width: 300px;
+            border-top: 25px solid transparent;
+            border-right: 50px solid #555;
+	        border-bottom: 25px solid transparent;
+        }
+    </style>
+    <script>
+        class Box{
+            constructor(){
+                this.target = Math.floor(Math.random() * 1000);
+                this.target = Math.floor(this.target/100) * 100;
+            }
+
+            mkBox(){
+                this.house = $(`<div class="house">
+                <ul class="box">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                    <li>9</li>
+                    <li>10</li>    
+                </ul>
+                </div>`);
+
+                this.playBox();
+                return this.house;
+            }
+
+            playBox(){
+                this.x = 0;
+                this.y = 0;
+                this.ref = setInterval(()=>{
+                    this.y -= 12;
+                    if(this.y <= -this.target){
+                        this.y = -this.target;
+                        clearInterval(this.ref);
+                    }
+                    // 각각 다른 지점에서 멈추게 함
+                    $('.box', this.house).css('top', this.y+'px');
+            }, 30);
+            }
+        } // Box 클래스
+
+        /*
+        $(document).ready(function(){
+            $('div.row').append(new Box().mkBox());
+            $('div.row').append(new Box().mkBox());
+            $('div.row').append(new Box().mkBox());
+
+        });
+        */
+
+        class Row{
+            constructor(){
+                this.row = $(`<div class="row"></div>`);
+            }
+
+            makeRow(){
+                this.row.append(new Box().mkBox());
+                this.row.append(new Box().mkBox());
+                this.row.append(new Box().mkBox());
+
+                return this.row;
+            }
+        };
+
+        $(function(){
+            $('.game').append(new Row().makeRow());
+            $('.game').append(new Row().makeRow());
+            $('.game').append(new Row().makeRow());
+            
+        });
+
+    </script>
+</head>
+<body>
+    <h1>햄버거 하우스형 게임</h1>
+    <fieldset>
+        <div class="game"></div>
+        <div class="stop"></div>
+    </fieldset>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom jQuery Plugin Example</title>
+  <!-- jQuery 라이브러리 로드 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Custom jQuery Plugin Example</h2>
+  <p>This is a paragraph with some text.</p>
+  <button id="btn">p 태그 스타일 변경</button>
+  <hr>
+  <button id="btn2">li 태그 스타일 변경</button>
+
+  <ul>
+    <li>HELLO</li>
+    <li>KOREA</li>
+    <li>APPLE</li>
+  </ul>
+  <script>
+    // 사용자 정의 플러그인 "highlight" 추가
+    $.fn.myFn = function(bgcolor) {
+      // 각 요소에 강조 효과 적용
+      this.each(function() {
+        $(this).css({
+            backgroundColor: 'yellow',
+            fontWeight: 'bold'
+        });
+      });
+    };
+
+    // 버튼 클릭 시 플러그인 호출
+    $(document).ready(function() {
+      $('#btn').click(function() {
+        $('p').myFn();
+      });
+      $("#btn2").click(function(){
+        $('li').myFn('orange');
+      });
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function extractArr(arr) {
+        // 짝수만 걸러서 새 배열에 담기
+        return arr.filter(function(num) {
+            return num % 2 == 0;
+        });
+    }
+
+    // 함수에 전달 할 배열 선언
+    let originalArr = [10,11,12,23,33,44,55,60,67,88];
+    
+    // 함수 호출
+    let newArrary = extractArr(originalArr);
+    console.log("new array:", newArrary);
+</script>
+</body>
+</html>

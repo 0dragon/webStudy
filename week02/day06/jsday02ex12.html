@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // class 키워드가 나오기 전에 class 대신 사용하던 방싣
+        // 클래스는 틀 or 원형이다.
+        // 붕어빵은 객체, 붕어빵 틀은 클래스.
+        function People(name, phone){
+            this.name = name;
+            this.phone = phone;
+            /*
+            this.showInfo = function(){
+                console.log("name: ", person01.name);
+                console.log("phone: ", person01['phone']);
+            }
+            */
+        }
+        // 주의: 모든 객체는 메서드의 코드가 복제될 필요는 없다.
+        // 메서드 영역 한 곳에 있으면 된다. (프로토타입)
+
+        People.prototype.showInfo = function(){
+            console.log("name: ", this.name);
+            console.log("phone: ", this['phone']);
+        }
+
+        var person01 = new People("홍길동", "010-1111-1111");
+        // console.log(person01);
+        // console.log("name", person01.name);
+        // console.log("name", person01['phone']);
+        // person01.showInfo();
+        
+        var person02 = new People("이순신", "010-2222-2222");
+        // person02.showInfo();
+
+        function Superman(name, phone){
+            this.name = name;
+            this.phone = phone;
+        }
+
+        // 옛날 방식의 상속
+        Superman.prototype = new People();
+        Superman.prototype.constructor = Superman;
+        Superman.prototype.fly = function(){
+            console.log("날아간다");
+        }
+        var s01 = new Superman("일지매", "010-3333-3333");
+        s01.showInfo();
+        s01.fly();
+
+
+
+
+    </script>
+</body>
+</html>

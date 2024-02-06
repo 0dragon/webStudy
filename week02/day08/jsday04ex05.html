@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+</head>
+<body>
+    <h1>jQuery</h1>
+    <p>
+        <button id="chgBtn">Change</button>
+    </p>    
+
+    <script>
+        // jquery 진입점
+        // $: 변수에 jQuery 함수를 참조시킨 것
+        // var $ == jQuery;
+
+        $(function(){
+            $('#chgBtn').click(function(e){
+                // text() -> innerText
+                // html() -> innerHTML
+                // css -> style
+                // hide()
+                // toggle()
+                // show()
+
+                // 메서드 체인을 사용하지 않고 적용
+                /*
+                $('h1').text("반갑습니다");
+                $('h1').css('color', 'blue');
+                $('h1').css('backgroundColor', 'yellow');
+                */
+               
+                // 메서드 체인 사용
+                $('h1').text("반갑습니다").css('color', 'blue');
+                // css 속성 여러 개를 한꺼번에 적용 - 객체 리터럴 사용
+                $('h1')
+                    .text("반갑습니다")
+                    .css({color: 'green', backgroundColor:'yellow'})
+                    .hide(1000)
+                    .fadeOut(1000);
+            });
+        });
+
+    </script>
+</body>
+</html>
